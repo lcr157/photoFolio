@@ -138,7 +138,74 @@
       background: var(--surface-2); border-radius: 10px;
       margin-bottom: 18px;
       display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
     }
+    .project-card {
+      text-align: left; cursor: pointer;
+      display: flex; flex-direction: column;
+    }
+    .project-card:focus {
+      outline: 2px solid var(--accent-light); outline-offset: 3px;
+    }
+    .project-period {
+      font-size: 12px; color: var(--text-muted); margin-bottom: 10px;
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 14px; font-size: 12px; color: var(--accent-light);
+      text-decoration: none; word-break: break-all;
+    }
+    .project-link:hover { text-decoration: underline; }
+
+    .thumb-dog { background: #16161a; color: #e4e4e7; }
+    .thumb-learn { background: linear-gradient(180deg, #ffe58a 0%, #fff6d6 55%, #fff 100%); }
+    .thumb-board { background: #f8fafc; }
+
+    .thumb-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+      width: 100%; padding: 16px 14px 0; align-self: flex-end;
+    }
+    .thumb-prod {
+      background: #fff; border-radius: 6px; height: 88px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+    .thumb-learn-inner { width: 100%; padding: 18px 16px; }
+    .thumb-learn-title {
+      font-size: 13px; font-weight: 800; color: #1f2937; margin-bottom: 10px;
+    }
+    .thumb-learn-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .thumb-chip { height: 42px; border-radius: 8px; }
+    .thumb-table { width: 86%; }
+    .thumb-table-row {
+      height: 10px; background: #e2e8f0; border-radius: 4px; margin-bottom: 8px;
+    }
+
+    dialog.project-modal {
+      width: min(720px, calc(100vw - 32px));
+      max-height: min(90vh, 860px);
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0;
+    }
+    dialog.project-modal::backdrop { background: rgba(6, 6, 12, 0.72); }
+    .modal-inner { padding: 28px 28px 32px; overflow: auto; max-height: min(90vh, 860px); }
+    .modal-close {
+      float: right; background: transparent; border: 0; color: var(--text-muted);
+      font-size: 22px; cursor: pointer; line-height: 1;
+    }
+    .modal-close:hover { color: var(--text); }
+    .modal-kicker { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-light); }
+    .modal-title { font-size: 26px; font-weight: 800; margin: 6px 0 16px; }
+    .modal-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+    .modal-block { margin-top: 22px; }
+    .modal-block h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .modal-block p, .modal-block li {
+      font-size: 14px; line-height: 1.8; color: var(--text-muted);
+    }
+    .modal-block ul { padding-left: 18px; }
+    .modal-block ul ul { margin-top: 4px; }
 
     /* ── Contact links ── */
     .contact-link {
@@ -155,12 +222,115 @@
     }
     .contact-link:focus { outline: 2px solid var(--accent-light); outline-offset: 2px; }
 
+    /* ── Resume ── */
+    .resume-block { margin-bottom: 48px; }
+    .resume-block:last-child { margin-bottom: 0; }
+    .resume-heading {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 18px; font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .resume-item {
+      position: relative;
+      padding: 0 0 28px 24px;
+      border-left: 1px solid var(--border);
+    }
+    .resume-item:last-child { padding-bottom: 0; }
+    .resume-item::before {
+      content: '';
+      position: absolute; left: -5px; top: 8px;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(127, 90, 240, 0.18);
+    }
+    .resume-title {
+      font-size: 15px; font-weight: 600; line-height: 1.5;
+      margin-bottom: 4px;
+    }
+    .resume-tag {
+      color: var(--accent-light); font-weight: 700;
+    }
+    .resume-period {
+      font-size: 12px; color: var(--text-muted);
+      font-weight: 400; margin-left: 6px;
+    }
+    .resume-list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: var(--text-muted);
+      font-size: 14px; line-height: 1.8;
+    }
+    .resume-list ul {
+      margin: 4px 0 0;
+      padding-left: 18px;
+    }
+    .cert-row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      padding: 16px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .stack-table { display: flex; flex-direction: column; gap: 8px; }
+    .stack-head, .stack-row {
+      display: grid;
+      grid-template-columns: 150px 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+    .stack-head {
+      padding: 0 16px 8px;
+      font-size: 11px; letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .stack-row {
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .stack-cat { font-size: 13px; font-weight: 700; }
+    .stack-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .badge-muted {
+      background: rgba(148, 163, 184, 0.1);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      color: #cbd5e1;
+      font-size: 11px; font-weight: 500;
+      padding: 3px 10px; border-radius: 999px;
+      display: inline-block;
+    }
+    .award-card {
+      padding: 22px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      max-width: 640px;
+    }
+    .award-meta {
+      display: flex; flex-wrap: wrap; gap: 8px 16px;
+      margin-top: 12px;
+      font-size: 12px; color: var(--text-muted);
+    }
+
     /* ── Responsive ── */
     @media (max-width: 640px) {
       .nav-links { display: none; }
       section { padding: 72px 0; }
       .hero-title { font-size: 52px !important; }
       .about-grid { grid-template-columns: 1fr !important; }
+      .stack-head { display: none; }
+      .stack-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .stack-col-label {
+        display: block !important;
+        font-size: 11px; color: var(--text-muted);
+        margin-bottom: 6px;
+      }
     }
   </style>
 </head>
@@ -172,6 +342,7 @@
       <span class="nav-logo">devLim</span>
       <div class="nav-links">
         <a href="#about"   class="nav-link">About</a>
+        <a href="#resume"  class="nav-link">Resume</a>
         <a href="#works"   class="nav-link">Works</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
@@ -225,22 +396,244 @@
 
         <div style="display: flex; flex-direction: column; gap: 16px;">
           <div class="card">
-            <p style="font-size: 12px; font-weight: 600; margin-bottom: 12px;" class="text-accent">Frontend</p>
+            <p style="font-size: 12px; font-weight: 600; margin-bottom: 12px;" class="text-accent">Main Stack</p>
             <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-              <span class="badge">React</span>
-              <span class="badge">Next.js</span>
-              <span class="badge">TypeScript</span>
-              <span class="badge">Tailwind CSS</span>
+              <span class="badge">Java</span>
+              <span class="badge">Spring</span>
+              <span class="badge">JavaScript</span>
+              <span class="badge">Oracle</span>
             </div>
           </div>
           <div class="card">
-            <p style="font-size: 12px; font-weight: 600; margin-bottom: 12px;" class="text-accent">Backend</p>
+            <p style="font-size: 12px; font-weight: 600; margin-bottom: 12px;" class="text-accent">Also Used</p>
             <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-              <span class="badge">Node.js</span>
+              <span class="badge">Spring Boot</span>
+              <span class="badge">React</span>
+              <span class="badge">Nexacro</span>
               <span class="badge">Python</span>
-              <span class="badge">PostgreSQL</span>
-              <span class="badge">Supabase</span>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume">
+    <div class="container">
+      <p class="section-label">Resume</p>
+      <h2 style="font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 48px;">
+        학력 · 경력 · 스킬
+      </h2>
+
+      <div class="resume-block">
+        <h3 class="resume-heading">
+          <span aria-hidden="true">📘</span> 학력 및 교육이수
+        </h3>
+
+        <div class="resume-item">
+          <p class="resume-title">
+            <span class="resume-tag">[입학]</span>
+            남서울대학교 정보통신공학과 중퇴
+            <span class="resume-period">2015.03 ~ 2019.07</span>
+          </p>
+        </div>
+
+        <div class="resume-item">
+          <p class="resume-title">
+            <span class="resume-tag">[편입학]</span>
+            세종대학교 지능기전공학과 졸업
+            <span class="resume-period">2020.03 ~ 2022.02</span>
+          </p>
+          <ul class="resume-list">
+            <li>Python 기반의 머신러닝, 딥러닝 학습</li>
+            <li>C언어 기반의 자료구조, 알고리즘 학습</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
+          <p class="resume-title">
+            <span class="resume-tag">[교육]</span>
+            쌍용교육센터 — 국비지원학원 Java 풀스택과정 이수
+            <span class="resume-period">2022.01 ~ 2022.06</span>
+          </p>
+          <ul class="resume-list">
+            <li>Java, Spring, Oracle, HTML, CSS, JavaScript 기반의 웹 풀스택 과정 이수</li>
+            <li>
+              2번의 팀 프로젝트를 통하여 협업 및 소통 능력 함양
+              <ul>
+                <li>세미프로젝트 : 강아지 사료 판매 사이트</li>
+                <li>파이널프로젝트 : 강의판매플랫폼</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="resume-block">
+        <h3 class="resume-heading">
+          <span aria-hidden="true">👤</span> 경력
+        </h3>
+
+        <div class="resume-item">
+          <p class="resume-title">
+            (주) 신원 SmartFactory팀
+            <span class="resume-period">2022.10 ~</span>
+          </p>
+          <ul class="resume-list">
+            <li>회사에서 처음 시도하는 해외 법인에 SmartFactory 구축 및 MES 시스템 개발 프로젝트 참여</li>
+            <li>해외 법인 봉제 MES 시스템 프로젝트 <span class="resume-period" style="margin-left:0;">(2022.10 ~)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="resume-block">
+        <h3 class="resume-heading">
+          <span aria-hidden="true">📗</span> 자격증
+        </h3>
+        <div style="display: flex; flex-direction: column; gap: 10px; max-width: 520px;">
+          <div class="cert-row">
+            <span style="font-size: 14px; font-weight: 600;">정보처리기사</span>
+            <span style="font-size: 12px; color: var(--text-muted);">2022.09 취득</span>
+          </div>
+          <div class="cert-row">
+            <span style="font-size: 14px; font-weight: 600;">SQLD (SQL 개발자)</span>
+            <span style="font-size: 12px; color: var(--text-muted);">2023.12 취득</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-block">
+        <h3 class="resume-heading">
+          <span aria-hidden="true">📚</span> 기술 스택
+        </h3>
+        <div class="stack-table">
+          <div class="stack-head">
+            <span>구분</span>
+            <span>사용할 줄 알아요</span>
+            <span>사용해본 적 있어요</span>
+          </div>
+
+          <div class="stack-row">
+            <span class="stack-cat">Language</span>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용할 줄 알아요</span>
+              <div class="stack-tags">
+                <span class="badge">Java</span>
+                <span class="badge">JavaScript</span>
+              </div>
+            </div>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용해본 적 있어요</span>
+              <div class="stack-tags">
+                <span class="badge-muted">C</span>
+                <span class="badge-muted">Python</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-row">
+            <span class="stack-cat">Back-end</span>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용할 줄 알아요</span>
+              <div class="stack-tags">
+                <span class="badge">Spring</span>
+                <span class="badge">MyBatis</span>
+              </div>
+            </div>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용해본 적 있어요</span>
+              <div class="stack-tags">
+                <span class="badge-muted">Spring Boot</span>
+                <span class="badge-muted">JPA</span>
+                <span class="badge-muted">jQuery</span>
+                <span class="badge-muted">Ajax</span>
+                <span class="badge-muted">JSP</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-row">
+            <span class="stack-cat">Front-end</span>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용할 줄 알아요</span>
+              <div class="stack-tags">
+                <span class="badge">Nexacro</span>
+                <span class="badge">HTML5</span>
+                <span class="badge">CSS3</span>
+              </div>
+            </div>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용해본 적 있어요</span>
+              <div class="stack-tags">
+                <span class="badge-muted">React</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-row">
+            <span class="stack-cat">DBMS</span>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용할 줄 알아요</span>
+              <div class="stack-tags">
+                <span class="badge">Oracle</span>
+              </div>
+            </div>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용해본 적 있어요</span>
+              <div class="stack-tags">
+                <span style="font-size: 12px; color: var(--text-muted);">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-row">
+            <span class="stack-cat">DevOps</span>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용할 줄 알아요</span>
+              <div class="stack-tags">
+                <span class="badge">Git</span>
+                <span class="badge">GitLab</span>
+                <span class="badge">Jenkins</span>
+              </div>
+            </div>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용해본 적 있어요</span>
+              <div class="stack-tags">
+                <span style="font-size: 12px; color: var(--text-muted);">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-row">
+            <span class="stack-cat">ETC</span>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용할 줄 알아요</span>
+              <div class="stack-tags">
+                <span class="badge">MobaXterm</span>
+                <span class="badge">UbiReport</span>
+              </div>
+            </div>
+            <div>
+              <span class="stack-col-label" style="display:none;">사용해본 적 있어요</span>
+              <div class="stack-tags">
+                <span style="font-size: 12px; color: var(--text-muted);">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-block">
+        <h3 class="resume-heading">
+          <span aria-hidden="true">🏆</span> 수상 경력
+        </h3>
+        <div class="award-card">
+          <p style="font-size: 11px; font-weight: 600; letter-spacing: 1px; color: var(--accent-light); margin-bottom: 8px;">최우수상</p>
+          <p style="font-size: 16px; font-weight: 700; line-height: 1.5;">제12회 창의설계경진대회</p>
+          <div class="award-meta">
+            <span>2021.12.03</span>
+            <span>세종대학교</span>
           </div>
         </div>
       </div>
@@ -252,38 +645,182 @@
     <div class="container">
       <p class="section-label">Works</p>
       <h2 style="font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px;">프로젝트</h2>
-      <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 48px;">추후 업데이트 예정입니다.</p>
+      <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 48px;">카드를 누르면 담당 내용과 느낀점을 볼 수 있습니다.</p>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
-        <div class="card">
-          <div class="project-thumb">
-            <span style="color: var(--text-muted); font-size: 12px; letter-spacing: 1px;">COMING SOON</span>
-          </div>
-          <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 6px;">Project 01</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">추후 업데이트 예정</p>
-          <div style="display: flex; gap: 6px;"><span class="badge">—</span></div>
-        </div>
 
-        <div class="card">
-          <div class="project-thumb">
-            <span style="color: var(--text-muted); font-size: 12px; letter-spacing: 1px;">COMING SOON</span>
+        <article class="card project-card" tabindex="0" data-open-project="modal-dog">
+          <div class="project-thumb thumb-dog">
+            <div class="thumb-grid">
+              <div class="thumb-prod"></div>
+              <div class="thumb-prod"></div>
+              <div class="thumb-prod"></div>
+              <div class="thumb-prod"></div>
+            </div>
           </div>
-          <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 6px;">Project 02</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">추후 업데이트 예정</p>
-          <div style="display: flex; gap: 6px;"><span class="badge">—</span></div>
-        </div>
+          <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 6px;">Dog Feed</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">강아지 사료 판매 사이트 제작</p>
+          <p class="project-period">2023.04.28 → 2023.05.04</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span class="badge">Java</span>
+            <span class="badge">Spring</span>
+            <span class="badge">Oracle</span>
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+            <span class="badge">JavaScript</span>
+          </div>
+          <a class="project-link" href="https://github.com/lcr157/dogFeed" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub →</a>
+        </article>
 
-        <div class="card">
-          <div class="project-thumb">
-            <span style="color: var(--text-muted); font-size: 12px; letter-spacing: 1px;">COMING SOON</span>
+        <article class="card project-card" tabindex="0" data-open-project="modal-learn">
+          <div class="project-thumb thumb-learn">
+            <div class="thumb-learn-inner">
+              <p class="thumb-learn-title">Dev Learn</p>
+              <div class="thumb-learn-cards">
+                <div class="thumb-chip" style="background:#34d399;"></div>
+                <div class="thumb-chip" style="background:#60a5fa;"></div>
+                <div class="thumb-chip" style="background:#f472b6;"></div>
+                <div class="thumb-chip" style="background:#a78bfa;"></div>
+              </div>
+            </div>
           </div>
-          <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 6px;">Project 03</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">추후 업데이트 예정</p>
-          <div style="display: flex; gap: 6px;"><span class="badge">—</span></div>
-        </div>
+          <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 6px;">Dev Learn</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">인터넷 강의 및 멘토링 서비스 제공 플랫폼</p>
+          <p class="project-period">2022.06.01 → 2022.06.30</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span class="badge">Java</span>
+            <span class="badge">Spring</span>
+            <span class="badge">Oracle</span>
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+            <span class="badge">JavaScript</span>
+          </div>
+          <a class="project-link" href="https://github.com/lcr157/FinalProject_DevLearn" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub →</a>
+        </article>
+
+        <article class="card project-card" tabindex="0" data-open-project="modal-board">
+          <div class="project-thumb thumb-board">
+            <div class="thumb-table">
+              <div class="thumb-table-row" style="width:100%; height:14px; background:#cbd5e1;"></div>
+              <div class="thumb-table-row"></div>
+              <div class="thumb-table-row" style="width:92%;"></div>
+              <div class="thumb-table-row" style="width:96%;"></div>
+              <div class="thumb-table-row" style="width:88%;"></div>
+              <div class="thumb-table-row" style="width:94%;"></div>
+            </div>
+          </div>
+          <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 6px;">게시판 CRUD</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">Spring Boot와 JPA를 이용한 간단한 게시판 구현</p>
+          <p class="project-period">2023.08.01 → 2023.08.15</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span class="badge">Java</span>
+            <span class="badge">Spring Boot</span>
+            <span class="badge">JPA</span>
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+            <span class="badge">JavaScript</span>
+          </div>
+          <a class="project-link" href="https://github.com/lcr157/CRUD_Board" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub →</a>
+        </article>
+
       </div>
     </div>
   </section>
+
+  <dialog id="modal-dog" class="project-modal">
+    <div class="modal-inner">
+      <button type="button" class="modal-close" data-close-modal aria-label="닫기">×</button>
+      <p class="modal-kicker">Project</p>
+      <h3 class="modal-title">Dog Feed</h3>
+      <p class="modal-meta">2023.04.28 → 2023.05.04 · Java, Spring, Oracle, HTML, CSS, JavaScript</p>
+      <a class="project-link" href="https://github.com/lcr157/dogFeed" target="_blank" rel="noopener">https://github.com/lcr157/dogFeed</a>
+      <div class="modal-block">
+        <h4>내용</h4>
+        <ul>
+          <li>강아지 사료 및 간식 판매하는 쇼핑몰을 구현했습니다.</li>
+          <li>실제 쇼핑몰 사이트에 존재하는 주요 기능 구현에 주안점을 두었습니다.</li>
+        </ul>
+      </div>
+      <div class="modal-block">
+        <h4>담당 내용</h4>
+        <ul>
+          <li>관리자들이 사용하는 메뉴를 담당하여 프론트 / 백엔드 / DB 개발을 진행했습니다.
+            <ul>
+              <li>상품관리: 관리자인 경우 판매할 상품을 등록, 수정, 삭제할 수 있습니다.</li>
+              <li>판매현황: 현재까지 판매된 상품들을 확인할 수 있습니다.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-block">
+        <h4>느낀점</h4>
+        <p>모호하게 알고 있던 개념들을 직접 구현해 보면서 더 명확하게 알 수 있게 된 좋은 경험이었습니다.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="modal-learn" class="project-modal">
+    <div class="modal-inner">
+      <button type="button" class="modal-close" data-close-modal aria-label="닫기">×</button>
+      <p class="modal-kicker">Project</p>
+      <h3 class="modal-title">Dev Learn</h3>
+      <p class="modal-meta">2022.06.01 → 2022.06.30 · Java, Spring, Oracle, HTML, CSS, JavaScript</p>
+      <a class="project-link" href="https://github.com/lcr157/FinalProject_DevLearn" target="_blank" rel="noopener">https://github.com/lcr157/FinalProject_DevLearn</a>
+      <div class="modal-block">
+        <h4>내용</h4>
+        <ul>
+          <li>인프런을 모티브로 한 인터넷 강의 및 멘토링 서비스 플랫폼을 구현했습니다.</li>
+          <li>강의와 멘토링뿐 아니라 관련 스터디 모집 기능도 가능하도록 구현했습니다.</li>
+        </ul>
+      </div>
+      <div class="modal-block">
+        <h4>담당 내용</h4>
+        <ul>
+          <li>로그인, 질문과 답변, 스터디 기능의 프론트 / 백엔드 / DB를 담당했습니다.
+            <ul>
+              <li>로그인: 회원가입 시 이메일 인증 및 유효성 검사를 통한 가입, 로그인 시 각종 제약 부여</li>
+              <li>커뮤니티_질문과 답변: 부트스트랩 모달과 JSP를 이용한 페이지 작성, CRUD, 페이징 및 검색</li>
+              <li>커뮤니티_스터디: 질문과 답변 기능 + 카카오 지도 API를 이용한 위치 정보 가져오기</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-block">
+        <h4>느낀점</h4>
+        <p>커뮤니티를 담당하면서 원하는 조건에 맞게 리스트를 가져오는 과정에서 SQL 쿼리와 MyBatis 사용법을 익힐 수 있었고, MVC 흐름과 에러가 났을 때 어디를 고쳐야 하는지에 익숙해졌습니다. 함수와 공식 문서를 읽으며 데이터 가공도 이해할 수 있었습니다.</p>
+        <p style="margin-top:10px;">프로젝트를 통해 소통의 중요성을 다시 느꼈고, 전체 진행 과정도 정리할 수 있었습니다.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="modal-board" class="project-modal">
+    <div class="modal-inner">
+      <button type="button" class="modal-close" data-close-modal aria-label="닫기">×</button>
+      <p class="modal-kicker">Project</p>
+      <h3 class="modal-title">게시판 CRUD</h3>
+      <p class="modal-meta">2023.08.01 → 2023.08.15 · Java, Spring Boot, JPA, HTML, CSS, JavaScript</p>
+      <a class="project-link" href="https://github.com/lcr157/CRUD_Board" target="_blank" rel="noopener">https://github.com/lcr157/CRUD_Board</a>
+      <div class="modal-block">
+        <h4>내용</h4>
+        <ul>
+          <li>Spring Boot와 JPA를 이용한 CRUD, 검색, 페이지 처리를 적용한 게시판과 OAuth 2.0 카카오 연동 프로젝트입니다.</li>
+        </ul>
+      </div>
+      <div class="modal-block">
+        <h4>구현 기능</h4>
+        <ul>
+          <li>회원: 회원가입, 로그인, 회원정보 수정, 회원탈퇴</li>
+          <li>게시판: CRUD, 조회수 관리, 페이징 및 검색</li>
+          <li>카카오 로그인 (OAuth 2.0): 카카오 계정 연동으로 회원가입 후 로그인</li>
+        </ul>
+      </div>
+      <div class="modal-block">
+        <h4>느낀점</h4>
+        <p>기능 구현은 이전 팀 프로젝트에서 다뤄 금방 끝날 줄 알았지만, 검색한 예제들이 정해진 형식에 맞춰져 있어 원하는 대로 제어하려면 스택 공부가 필요했습니다. 작은 코드 에러와 버전 문제 때문에 시행착오가 많아 생각보다 오래 걸렸습니다.</p>
+        <p style="margin-top:10px;">그래도 JPA, OAuth 2.0처럼 처음 쓰는 스택에 익숙해져서 좋은 공부가 되었습니다.</p>
+      </div>
+    </div>
+  </dialog>
 
   <!-- Contact -->
   <section id="contact">
@@ -347,6 +884,38 @@
       © 2026 임채룡 (devLim). Built with passion.
     </p>
   </footer>
+
+  <script>
+    function openProjectModal(id) {
+      const dialog = document.getElementById(id);
+      if (dialog) dialog.showModal();
+    }
+
+    document.querySelectorAll('[data-open-project]').forEach(function (card) {
+      card.addEventListener('click', function () {
+        openProjectModal(card.getAttribute('data-open-project'));
+      });
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openProjectModal(card.getAttribute('data-open-project'));
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-close-modal]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const dialog = btn.closest('dialog');
+        if (dialog) dialog.close();
+      });
+    });
+
+    document.querySelectorAll('dialog.project-modal').forEach(function (dialog) {
+      dialog.addEventListener('click', function (e) {
+        if (e.target === dialog) dialog.close();
+      });
+    });
+  </script>
 
 </body>
 </html>
